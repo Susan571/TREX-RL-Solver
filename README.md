@@ -1,8 +1,26 @@
-# TREX: Topologically-guided Reinforcement Learning with EXploration
+# TREX: Towards Long-Horizon Reasoning in Low-Resource Reward Regimes
 
 TREX is a reinforcement learning algorithm for solving AC (Andrews-Curtis) problems, combining Active Symbolic Closure (ASC) for feasibility constraints with Topological Neuro-Symbolic Compression (TNSC) for guided exploration.
 
-## Quick Start
+## Project Structure
+
+```
+trex/
+├── train.py          # Main training entry point
+├── training.py       # TREX training loop
+├── policy.py         # TREXPolicy (actor-critic)
+├── guidance.py       # ASC validity masking + TNSC potentials
+├── config.py         # Command-line arguments
+├── env_setup.py      # Environment initialization
+├── utils.py          # Helper functions
+├── eval/             # Evaluation scripts
+└── ac_solver/        # AC problem generator and environment
+    ├── envs/         # AC environment implementation
+    ├── search/       # Classical search algorithms (BFS, Greedy)
+    └── agents/       # PPO baseline for comparison
+```
+
+## Start
 
 ### Training
 
@@ -69,24 +87,6 @@ Policy logits augmented with topological potential: `logits = base_logits + λ �
 
 ### Policy Update
 PPO clip + KL penalty with adaptive beta. Optional group-relative advantage normalization.
-
-## File Structure
-
-```
-trex/
-├── train.py          # Main training entry point
-├── training.py       # TREX training loop
-├── policy.py         # TREXPolicy (actor-critic)
-├── guidance.py       # ASC validity masking + TNSC potentials
-├── config.py         # Command-line arguments
-├── env_setup.py      # Environment initialization
-├── utils.py          # Helper functions
-├── eval/             # Evaluation scripts
-└── ac_solver/        # AC problem generator and environment
-    ├── envs/         # AC environment implementation
-    ├── search/       # Classical search algorithms (BFS, Greedy)
-    └── agents/       # PPO baseline for comparison
-```
 
 ## Dependencies
 
